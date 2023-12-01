@@ -48,6 +48,22 @@ def solve_part_2(puzzle_input):
         total += line_value
     return total
 
+def get_part2_value_from_line(line):
+    digits = []
+    for i, c in enumerate(line):
+        if c in "1234567890":
+            digits.append(c)
+        else:
+            for digit,word in enumerate(DIGITS):
+                if line[i:i+len(word)] == word:
+                    digits.append(str(digit))
+
+    return int(digits[0] + digits[-1])
+
+
+def solve_part_2_v2(puzzle_input):
+    return sum(get_part2_value_from_line(line) for line in puzzle_input)
+
 if __name__ == "__main__":
     puzzle_input = get_puzzle_input()
 
@@ -56,3 +72,6 @@ if __name__ == "__main__":
 
     answer_2 = solve_part_2(puzzle_input)
     print(f"Part 2: {answer_2}")
+
+    answer_2_v2 = solve_part_2_v2(puzzle_input)
+    print(f"Part 2 v2: {answer_2_v2}")
