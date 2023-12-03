@@ -8,7 +8,7 @@ def get_puzzle_input(filename="input.txt"):
     with open(filename) as input_txt:
         for j,line in enumerate(input_txt):
             max_j = max(j, max_j)
-            for i, char in enumerate(line):
+            for i, char in enumerate(line.strip()):
                 max_i = max(i, max_i)
                 puzzle_input[(i,j)] = char
     return puzzle_input, (max_i, max_j)
